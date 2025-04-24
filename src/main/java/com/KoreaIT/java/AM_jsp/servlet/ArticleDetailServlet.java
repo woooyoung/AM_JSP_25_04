@@ -1,4 +1,4 @@
-package com.KoreaIT.java.AM_jsp;
+package com.KoreaIT.java.AM_jsp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+
+import com.KoreaIT.java.AM_jsp.util.DBUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -39,13 +41,11 @@ public class ArticleDetailServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
-			DBUtil dbUtil = new DBUtil(request, response);
-
 			int id = Integer.parseInt(request.getParameter("id"));
 
 			String sql = String.format("SELECT * FROM article WHERE id = %d;", id);
 
-			Map<String, Object> articleRow = dbUtil.selectRow(conn, sql);
+			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 
 			request.setAttribute("articleRow", articleRow);
 
