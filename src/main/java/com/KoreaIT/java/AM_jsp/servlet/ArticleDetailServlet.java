@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
+import com.KoreaIT.java.AM_jsp.util.SecSql;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -43,7 +44,11 @@ public class ArticleDetailServlet extends HttpServlet {
 
 			int id = Integer.parseInt(request.getParameter("id"));
 
-			String sql = String.format("SELECT * FROM article WHERE id = %d;", id);
+//			String sql = String.format("SELECT * FROM article WHERE id = %d;", id);
+
+			SecSql sql = SecSql.from("SELECT *");
+			sql.append("FROM article");
+			sql.append("WHERE id = ?;", id);
 
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 
