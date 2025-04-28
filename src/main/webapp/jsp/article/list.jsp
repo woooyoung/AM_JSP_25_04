@@ -27,6 +27,7 @@ table>thead>tr>th, table>tbody>tr>td {
 
 
 	<a href="../home/main">메인으로 이동</a>
+	<a href="write">글쓰기</a>
 
 	<div>
 		총 게시글 갯수 :
