@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import com.KoreaIT.java.AM_jsp.dto.Article;
 import com.KoreaIT.java.AM_jsp.service.ArticleService;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
@@ -52,10 +53,10 @@ public class ArticleController {
 		int totalCnt = articleService.getTotalCnt();
 		int totalPage = (int) Math.ceil(totalCnt / (double) itemsInAPage);
 
-		List<Map<String, Object>> articleRows = articleService.getForPrintArticles(limitFrom, itemsInAPage);
+		List<Article> articles = articleService.getForPrintArticles(limitFrom, itemsInAPage);
 
 		request.setAttribute("page", page);
-		request.setAttribute("articleRows", articleRows);
+		request.setAttribute("articles", articles);
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("totalPage", totalPage);
 
